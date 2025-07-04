@@ -17,10 +17,12 @@
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
+\usepackage{ifthen}
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{tikz}
 \usepackage{adjustbox}
+
 
 \newtheorem{theorem}{Theorem}
 
@@ -57,10 +59,12 @@
 %%                           Preamble                           %%
 %%                                                              %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \renewcommand{\bibname}{References}
 \setcounter{tocdepth}{1}
 \newcommand{\myfooter}{
+  \ifthenelse{\equal{\rightmark}{\MakeUppercase[]{References}}}{
+    {\scriptsize\color{lightgray}\leftmark\hspace{0.5em}-- REFERENCES}
+  }{
     \ifodd\value{page} % Odd pages
         \ifnum\value{chapter}=0
             {\scriptsize\color{lightgray} \leftmark} %\relax % No chapter number if not defined
@@ -74,12 +78,17 @@
     \else % Even pages
         {\scriptsize\color{lightgray} \rightmark}
     \fi
+  }
 }
 \fancypagestyle{plain}{
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
-  \fancyfoot[C]{\myfooter}
+  \fancyfoot[C]{
+    \begin{minipage}{0.8\textwidth}
+      \centering \myfooter
+    \end{minipage}
+  }
   \fancyfoot[LE]{\thepage}
   \fancyfoot[RO]{\thepage}
 }
@@ -184,7 +193,7 @@
 \vspace{0.5cm}
 
 \noindent\textbf{Dr. Guillermo J. Rodrigo Tárrega}, doctor en Biotecnología, por la Universitat Politècnica de València (UPV)
-y Científico Titular del Consejo Superior de Investigaciones Científicas (CSIC) en el Instituto de Biología Integrativa y de Sistemas (I2SysBio),
+e Investigador Científico del Consejo Superior de Investigaciones Científicas (CSIC) en el Instituto de Biología Integrativa y de Sistemas (I2SysBio),
 centro mixto del CSIC y de la Universitat de València Estudi General (UVEG),
 
 \vspace{1.5cm}
@@ -193,8 +202,8 @@ CERTIFICA:
 
 \vspace{1.5cm}
 
-\noindent Que Don Lucas Goiriz Beltrán, graduado en Biotecnología por la Universitat Politècnica de València (UPV), ha realizado bajo su co-supervisión el trabajo titulado
-``Stochastic dynamic modeling of evolving gene expression programs'', que presenta para optar al grado internacional de Doctor en Matemáticas por la Universitat Politècnica de València (UPV) y la Universitat de València Estudi General (UVEG).
+\noindent Que Don Lucas Goiriz Beltrán, graduado en Biotecnología por la UPV, ha realizado bajo su supervisión el trabajo titulado
+``Stochastic dynamic modeling of evolving gene expression programs'', que presenta para optar al grado internacional de Doctor en Matemáticas por la UPV y la UVEG.
 
 \vspace{1cm}
 
@@ -214,7 +223,10 @@ En València, Julio 2025.
 
 \vfill
 
-\pagebreak ~
+\clearpage
+\thispagestyle{empty}
+\null
+\clearpage
 
 % Supervisor 2 Authorisation
 \chapter*{}
@@ -236,8 +248,8 @@ CERTIFICA:
 
 \vspace{1.5cm}
 
-\noindent Que Don Lucas Goiriz Beltrán, graduado en Biotecnología por la Universitat Politècnica de València (UPV), ha realizado bajo su co-supervisión el trabajo titulado
-``Stochastic dynamic modeling of evolving gene expression programs'', que presenta para optar al grado internacional de Doctor en Matemáticas por la Universitat Politècnica de València (UPV) y la Universitat de València Estudi General (UVEG).
+\noindent Que Don Lucas Goiriz Beltrán, graduado en Biotecnología por la UPV, ha realizado bajo su supervisión el trabajo titulado
+``Stochastic dynamic modeling of evolving gene expression programs'', que presenta para optar al grado internacional de Doctor en Matemáticas por la UPV y la UVEG.
 
 \vspace{1cm}
 
@@ -257,7 +269,11 @@ En València, Julio 2025.
 
 \vfill
 
-\pagebreak ~
+\clearpage
+\thispagestyle{empty}
+\null
+\clearpage
+
 
 \chapter*{}
 \vspace*{1cm}
@@ -265,12 +281,15 @@ En València, Julio 2025.
 \textit{Do not trust, verify ~~\\ ~ \\ --- vires in numeris ---}
 \end{flushright}
 
-% Abstracts
-\chapter*{}
+\clearpage
+\thispagestyle{empty}
+\null
+\clearpage
+
+
 \include{chapters/0_1_Abstracts}
 
 % Contents
-\chapter*{}
 \tableofcontents
 \vfill
 \pagebreak
@@ -280,52 +299,58 @@ En València, Julio 2025.
 \pagestyle{plain}
 \pagenumbering{arabic}
 \include{chapters/1_Introduction}
-\vfill
-\pagebreak
-\newpage ~
+
+\clearpage
+\thispagestyle{empty}
+\null
+\clearpage
 
 \include{chapters/0_2_Objectives}
-\vfill
-\pagebreak ~
+
+\clearpage
+\thispagestyle{empty}
+\null
+\clearpage
 
 
 \include{chapters/2_Chapter2}
-\vfill
-\pagebreak ~
+
+\clearpage
+\thispagestyle{empty}
+\null
+\clearpage
 
 % % Paper 2
 \include{chapters/3_Chapter3}
-\vfill
-\pagebreak ~
 
 % Paper 3
 \include{chapters/4_Chapter4}
-\vfill
-\pagebreak ~
+
+\clearpage
+\thispagestyle{empty}
+\null
+\clearpage
 
 % Addendum
 % Include the addendum here
 \include{chapters/Addendum}
 \vfill
-\pagebreak ~
 
 % General discussion
 \include{chapters/General_Discussion}
-\vfill
-\pagebreak ~
+
+\clearpage
+\thispagestyle{empty}
+\null
+\clearpage
 
 % Conclusions
 
 % Puede incluir referencias.
 \include{chapters/5_Conclusions}
 \vfill
-\pagebreak ~
   
 % Acknowledgements
 \include{chapters/6_Acknowledgements}
-\vfill
-\pagebreak
-\thispagestyle{almostempty}
-\newpage ~
 
 \end{document}
